@@ -24,7 +24,6 @@ class MarketData:
             ]
         )
 
-        from utils.candle_utils import prepare_dataframe
         return df[
             ["Open Time", "Open", "High", "Low", "Close", "Volume"]
         ]
@@ -54,15 +53,3 @@ class MarketData:
             data[name] = df
 
         return data
-        df = prepare_dataframe(df)
-
-return df[
-    [
-        "Open Time",
-        "Open",
-        "High",
-        "Low",
-        "Close",
-        "Volume"
-    ]
-]
