@@ -1,5 +1,6 @@
 from binance.client import Client
 import pandas as pd
+from utils.candle_utils import prepare_dataframe
 
 
 class MarketData:
@@ -24,6 +25,8 @@ class MarketData:
             ]
         )
 
+        df = prepare_dataframe(df)
+
         return df[
             ["Open Time", "Open", "High", "Low", "Close", "Volume"]
         ]
@@ -43,7 +46,6 @@ class MarketData:
         data = {}
 
         for name, interval in timeframes.items():
-
             df = self.get_klines(
                 symbol=symbol,
                 interval=interval,

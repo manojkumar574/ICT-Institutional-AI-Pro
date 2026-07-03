@@ -1,16 +1,26 @@
 import pandas as pd
 
 
+def prepare_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Prepare Binance OHLC dataframe for analysis.
+    """
+
+    df = df.copy()
+
+    columns = ["Open", "High", "Low", "Close", "Volume"]
+
+    for col in columns:
+        df[col] = pd.to_numeric(df[col])
+
+    return df
+
+
 class CandleUtils:
 
     @staticmethod
     def to_numeric(df):
-        columns = ["Open", "High", "Low", "Close", "Volume"]
-
-        for col in columns:
-            df[col] = pd.to_numeric(df[col])
-
-        return df
+        return prepare_dataframe(df)
 
     @staticmethod
     def last_close(df):
