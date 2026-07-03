@@ -23,3 +23,25 @@ class CandleUtils:
     @staticmethod
     def last_low(df):
         return float(df["Low"].iloc[-1])
+        import pandas as pd
+
+
+def prepare_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Prepare Binance OHLC dataframe for analysis.
+    """
+
+    df = df.copy()
+
+    numeric_columns = [
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume"
+    ]
+
+    for col in numeric_columns:
+        df[col] = pd.to_numeric(df[col])
+
+    return df
